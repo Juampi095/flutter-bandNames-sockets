@@ -5,12 +5,10 @@ import 'package:socket_io_client/socket_io_client.dart'
 enum ServerStatus { online, offline, connecting }
 
 class SocketService with ChangeNotifier {
-  final io.Socket _socket = io.io(
-      'http://127.0.0.1:57323',
-      io.OptionBuilder()
-          .setTransports(['websockets'])
-          .enableAutoConnect()
-          .build());
+  final io.Socket _socket = io.io('http://192.168.100.223:3000', {
+    'transports': ['websockets'],
+    'autoConnect': true
+  });
 
   ServerStatus _serverStatus = ServerStatus.connecting;
 
